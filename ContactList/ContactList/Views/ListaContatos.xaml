@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContactList.Views.ListaContatos">
+  <StackLayout>
+    <ListView x:Name="lstContatos" HasUnevenRows="True">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+              <StackLayout Spacing="3" Orientation="Horizontal">
+                <StackLayout Orientation="Vertical">
+                  <Label Text="{Binding Nome}" FontSize="24" FontFamily="HelveticaNeue-Medium"></Label>
+                  <Label Text="{Binding Telefone}" FontSize="14" TextColor="Aqua" FontFamily="HelveticaNeue-Medium"></Label>
+                </StackLayout>
+              </StackLayout>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>
