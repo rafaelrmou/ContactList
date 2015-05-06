@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Interfaces\IContacts.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ListaContatos.xaml.cs">

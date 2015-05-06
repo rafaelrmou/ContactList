@@ -1,4 +1,5 @@
-﻿using ContactList.Models;
+﻿using ContactList.Interfaces;
+using ContactList.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,22 @@ namespace ContactList.Views
             InitializeComponent();
 
 
-            lstContatos.ItemsSource = getList();
+
+            var dependency = DependencyService.Get<IContacts>();
+
+            dependency.BuscaContatos().ContinueWith(t =>
+             {
+                 if (t.IsFaulted)
+                 {
+                     DisplayAlert("Erro", "Falha ao buscar os contatos", "OK");
+                 }
+                 else
+                 {
+                     lstContatos.ItemsSource = t.Result;
+                 }
+             });
+
+
 
 
         }
@@ -23,10 +39,10 @@ namespace ContactList.Views
         List<Contato> getList()
         {
             return new List<Contato>{
-                new Contato(){Nome="Arthur",Telefone="+55 (31) 1111-1111"},
-                new Contato(){Nome="Daniel",Telefone="+55 (31) 2222-2222"},
-                new Contato(){Nome="Micaella",Telefone="+55 (31) 3333-3333"},
-                new Contato(){Nome="Rafael",Telefone="+55 (31) 4444-4444"},
+                new Contato(){Nome="Arthur",Telefone="+55 (31) 1111-1111", UltimoContato = DateTime.Now},
+                new Contato(){Nome="Daniel",Telefone="+55 (31) 2222-2222", UltimoContato = DateTime.Now},
+                new Contato(){Nome="Micaella",Telefone="+55 (31) 3333-3333", UltimoContato = DateTime.Now},
+                new Contato(){Nome="Rafael",Telefone="+55 (31) 4444-4444", UltimoContato = DateTime.Now},
             };
         }
     }
